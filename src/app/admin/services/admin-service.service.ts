@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { Credential,Auth } from './admin-models';
+import { Credential,Auth } from '../admin-models';
 import { Observable } from 'rxjs/Observable';
 import { catchError } from 'rxjs/operators';
-import { environment } from '../../environments/environment';
-import { BaseService } from '../shared/services/base.service';
+import { environment } from '../../../environments/environment';
+import { BaseService } from '../../shared/services/base.service';
 
 @Injectable()
 export class AdminServiceService extends BaseService{
