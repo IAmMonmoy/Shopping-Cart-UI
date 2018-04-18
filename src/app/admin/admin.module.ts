@@ -5,11 +5,14 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { AuthenticateComponent } from './authenticate/authenticate.component';
 import { TagsComponent } from './tags/tags.component';
 import { ShipmentComponent } from './shipment/shipment.component';
+import { FormsModule , ReactiveFormsModule} from '@angular/forms'
 
 @NgModule({
   imports: [
     CommonModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   declarations: [AddProductComponent, AuthenticateComponent, TagsComponent, ShipmentComponent]
 })

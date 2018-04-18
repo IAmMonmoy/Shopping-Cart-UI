@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Credential } from '../admin-models';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-authenticate',
@@ -7,9 +9,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AuthenticateComponent implements OnInit {
 
-  constructor() { }
+  loginForm  : FormGroup;
+
+  constructor(private fb: FormBuilder) {
+   }
 
   ngOnInit() {
+    this.createForm();
   }
+
+  createForm()
+  {
+    this.loginForm = this.fb.group({
+        email : ['', [ Validators.required,
+                       Validators.email
+                     ]
+                ],
+        password : ['', [ Validators.required,
+                        Validators.minLength(5),
+                        Validators.maxLength(100)
+                        ]
+                    ]
+    });
+  }
+  
+
 
 }
