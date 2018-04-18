@@ -6,12 +6,13 @@ import { AuthenticateComponent } from './authenticate/authenticate.component';
 import { TagsComponent } from './tags/tags.component';
 import { ShipmentComponent } from './shipment/shipment.component';
 import { AuthGuardService as AuthGuard } from './services/auth-guard.service';
+import { RoleGuardService as RoleGuard } from './services/role-guard.service';
 
 const routes : Routes = [
-  { path: 'addProduct' , component: AddProductComponent , canActivate : [AuthGuard]},
+  { path: 'addProduct' , component: AddProductComponent , canActivate : [RoleGuard], data: { expectedRole : 'Administrator' }},
   { path: 'login' , component: AuthenticateComponent },
-  { path: 'tags' , component: TagsComponent, canActivate : [AuthGuard]},
-  { path: 'shipment', component: ShipmentComponent, canActivate : [AuthGuard]}
+  { path: 'tags' , component: TagsComponent, canActivate : [RoleGuard], data: { expectedRole : 'Administrator' }},
+  { path: 'shipment', component: ShipmentComponent, canActivate : [RoleGuard], data: { expectedRole : 'Administrator' }}
 ]
 
 @NgModule({
