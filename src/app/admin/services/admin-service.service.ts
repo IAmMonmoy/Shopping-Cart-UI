@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { Credential,Auth } from '../admin-models';
+import { Credential,Auth, Tag } from '../admin-models';
 import { Observable } from 'rxjs/Observable';
 import { catchError } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
@@ -28,6 +28,26 @@ export class AdminServiceService extends BaseService{
   storeToken(auth:Auth)
   {
     localStorage.setItem('token', auth.token);
+  }
+
+  getAllTags() : Observable<Tag[]>
+  {
+    return this.http.get(`${environment.baseUrl}/api/tags`).pipe(
+      catchError(val => this.handleError(new HttpErrorResponse(val)))
+    );
+  }
+
+  postTag(tag: Tag)
+  {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      })
+    }
+
+      return this.http.post(`${environment.baseUrl}/api/tags`,tag,httpOptions).pipe(
+        catchError(val => this.handleError(new HttpErrorResponse(val)))
+      );
   }
 
 }

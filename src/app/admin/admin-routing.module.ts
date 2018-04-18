@@ -11,7 +11,7 @@ import { RoleGuardService as RoleGuard } from './services/role-guard.service';
 const routes : Routes = [
   { path: 'addProduct' , component: AddProductComponent },
   { path: 'login' , component: AuthenticateComponent },
-  { path: 'tags' , component: TagsComponent, canActivate : [RoleGuard], data: { expectedRole : 'Administrator' }},
+  { path: 'tags' , component: TagsComponent},
   { path: 'shipment', component: ShipmentComponent, canActivate : [RoleGuard], data: { expectedRole : 'Administrator' }}
 ]
 

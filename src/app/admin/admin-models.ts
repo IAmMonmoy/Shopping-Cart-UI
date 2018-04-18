@@ -19,3 +19,9 @@ export interface Product
     Image: File[];
     Tags: string[];
 }
+
+export class Tag
+{
+    TagName : string = '';
+    TagDescription : string = '' ;
+}
