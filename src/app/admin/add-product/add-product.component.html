@@ -1,3 +1,94 @@
-<p>
-  add-product works!
-</p>
+<div class="container">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="card">
+                <h5 class="card-header">Add Product</h5>
+                <div class="card-body">
+                    <h5 class="card-title"></h5>
+                    <form [formGroup]="productForm" (ngSubmit) = "onSubmit()" novalidate>
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <label for="ProductCode">ProductCode</label>
+                                <input type="text" id="ProductCode" class="form-control" formControlName="ProductCode">
+                                <div class="alert alert-danger" role="alert" *ngIf="productForm.controls.ProductCode.errors && (productForm.controls.ProductCode.dirty || productForm.controls.ProductCode.touched)">
+                                    <div *ngIf = "productForm.controls.ProductCode.errors.required">
+                                        <p>ProductCode field is required</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="ProductName">ProductName</label>
+                                <input type="text" id="ProductName" class="form-control" formControlName="ProductName">
+                                <div class="alert alert-danger" role="alert" *ngIf="productForm.controls.ProductName.errors && (productForm.controls.ProductCode.dirty || productForm.controls.ProductCode.touched)">
+                                    <div *ngIf = "productForm.controls.ProductName.errors.required">
+                                        <p>ProductName field is required</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="Description">Description</label>
+                            <textarea class="form-control" rows="6" id="Description" formControlName="Description"></textarea>
+                            <div class="alert alert-danger" role="alert" *ngIf="productForm.controls.Description.errors && (productForm.controls.Description.dirty || productForm.controls.Description.touched)">
+                                <div *ngIf = "productForm.controls.Description.errors.required">
+                                    <p>Description field is required</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <label for="Price">Price</label>
+                                <input type="text" id="Price" class="form-control" formControlName="Price">
+                                <div class="alert alert-danger" role="alert" *ngIf="productForm.controls.Price.errors && (productForm.controls.Price.dirty || productForm.controls.Price.touched)">
+                                    <div *ngIf = "productForm.controls.Price.errors.required">
+                                        <p>Price field is required</p>
+                                    </div>
+                                    <div *ngIf = "productForm.controls.Price.errors.min">
+                                        <p>Minimun Price is 1</p>
+                                    </div>
+                                    <div *ngIf = "productForm.controls.Price.errors.max">
+                                        <p>Maximum Price is 10000000</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="Stock">Stock</label>
+                                <input type="text" id="Stock" class="form-control" formControlName="Stock">
+                                <div class="alert alert-danger" role="alert" *ngIf="productForm.controls.Stock.errors && (productForm.controls.Stock.dirty || productForm.controls.Stock.touched)">
+                                    <div *ngIf = "productForm.controls.Stock.errors.required">
+                                        <p>Stock field is required</p>
+                                    </div>
+                                    <div *ngIf = "productForm.controls.Stock.errors.min">
+                                        <p>Minimun Stock is 1</p>
+                                    </div>
+                                    <div *ngIf = "productForm.controls.Stock.errors.max">
+                                        <p>Maximum Stock is 10000</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="customFile" multiple>
+                                <label class="custom-file-label" for="customFile">Choose file</label>
+                             </div>
+                            
+                            <div class="form-group row">
+                                <div class="col-md-12">
+                                    <select class="selectpicker">
+                                        <option>Mustard</option>
+                                        <option>Ketchup</option>
+                                        <option>Barbecue</option>
+                                      </select>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
