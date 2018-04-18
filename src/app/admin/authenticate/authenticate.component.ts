@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Credential } from '../admin-models';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { AdminServiceService } from '../admin-service.service';
+import { error } from 'protractor';
 
 @Component({
   selector: 'app-authenticate',
@@ -10,8 +12,10 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 export class AuthenticateComponent implements OnInit {
 
   loginForm  : FormGroup;
+  credential : Credential;
+  isRequesting : boolean;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private _adminServices: AdminServiceService) {
    }
 
   ngOnInit() {
@@ -31,6 +35,30 @@ export class AuthenticateComponent implements OnInit {
                         ]
                     ]
     });
+  }
+  onSubmit()
+  {
+    if(this.loginForm.valid)
+    {
+      this.credential = new Credential();
+      this.credential.email = this.loginForm.controls.email.value;
+      this.credential.password = this.loginForm.controls.password.value;
+
+      this.isRequesting = true;
+
+      this._adminServices.login(this.credential).subscribe(
+        data => {
+          this.isRequesting = false;
+          this._adminServices.storeToken(data);
+          console.log(data);
+        },
+        error => {
+          console.log(error);
+          this.isRequesting = false;
+        }
+      );
+      this.loginForm.reset();
+    }
   }
   
 

@@ -5,7 +5,9 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { AuthenticateComponent } from './authenticate/authenticate.component';
 import { TagsComponent } from './tags/tags.component';
 import { ShipmentComponent } from './shipment/shipment.component';
-import { FormsModule , ReactiveFormsModule} from '@angular/forms'
+import { FormsModule , ReactiveFormsModule} from '@angular/forms';
+import { AdminServiceService } from './admin-service.service';
+
 
 @NgModule({
   imports: [
@@ -14,6 +16,10 @@ import { FormsModule , ReactiveFormsModule} from '@angular/forms'
     FormsModule,
     ReactiveFormsModule
   ],
+  providers : [
+    AdminServiceService
+  ]
+  ,
   declarations: [AddProductComponent, AuthenticateComponent, TagsComponent, ShipmentComponent]
 })
 export class AdminModule { }

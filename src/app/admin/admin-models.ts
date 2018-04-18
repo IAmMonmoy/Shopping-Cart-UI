@@ -1,5 +1,10 @@
 export class Credential
 {
-    username:string = '';
-    password:string = '';
+    email: string = '';
+    password: string = '';
+}
+
+export class Auth {
+    token: string = '';
+    expiration: string = '';
 }

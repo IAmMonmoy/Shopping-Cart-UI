@@ -3,7 +3,7 @@
         <div class="col-md-4"></div>
         <div class="col-md-4">
             <h1>Login</h1>
-            <form class="form-horizontal" [formGroup]="loginForm" (Submit)="onSubmit()" novalidate>
+            <form class="form-horizontal" [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
                 <div class="form-group row">
                     <label for="email" class="col-sm-3 col-form-label">Email</label>
                      <div class="col-sm-9">
