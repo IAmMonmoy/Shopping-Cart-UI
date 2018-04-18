@@ -7,6 +7,8 @@ import { TagsComponent } from './tags/tags.component';
 import { ShipmentComponent } from './shipment/shipment.component';
 import { FormsModule , ReactiveFormsModule} from '@angular/forms';
 import { AdminServiceService } from './services/admin-service.service';
+import { AuthGuardService } from './services/auth-guard.service';
+import { RoleGuardService } from './services/role-guard.service';
 
 
 @NgModule({
@@ -17,7 +19,9 @@ import { AdminServiceService } from './services/admin-service.service';
     ReactiveFormsModule
   ],
   providers : [
-    AdminServiceService
+    AdminServiceService,
+    AuthGuardService,
+    RoleGuardService
   ]
   ,
   declarations: [AddProductComponent, AuthenticateComponent, TagsComponent, ShipmentComponent]
