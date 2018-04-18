@@ -5,12 +5,13 @@ import { AddProductComponent } from './add-product/add-product.component';
 import { AuthenticateComponent } from './authenticate/authenticate.component';
 import { TagsComponent } from './tags/tags.component';
 import { ShipmentComponent } from './shipment/shipment.component';
+import { AuthGuardService as AuthGuard } from './services/auth-guard.service';
 
 const routes : Routes = [
-  { path: 'product' , component: AddProductComponent },
+  { path: 'addProduct' , component: AddProductComponent , canActivate : [AuthGuard]},
   { path: 'login' , component: AuthenticateComponent },
-  { path: 'tags' , component: TagsComponent},
-  { path: 'shipment', component: ShipmentComponent}
+  { path: 'tags' , component: TagsComponent, canActivate : [AuthGuard]},
+  { path: 'shipment', component: ShipmentComponent, canActivate : [AuthGuard]}
 ]
 
 @NgModule({
