@@ -10,13 +10,14 @@
                         <tr>
                           <th scope="col">#</th>
                           <th scope="col">Tag Name</th>
-                          
+                          <th scope="col">Tag Delete</th>
                         </tr>
                       </thead>
                       <tbody>
                         <tr *ngFor="let tag of tags; let i=index;">
                           <th scope="row">{{i+1}}</th>
                           <td>{{tag.tagName}}</td>
+                          <td style="align-content: center"><button class="btn btn-danger" value="{{tag.id}}" (click) = "deleteTag($event)">Delete</button></td>
                         </tr>
                       </tbody>
                     </table>

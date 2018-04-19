@@ -29,7 +29,6 @@ export class TagsComponent implements OnInit {
     this._adminService.getAllTags().subscribe(
       data => {
         this.tags = data;
-        console.log(this.tags);
       }
     );
   }
@@ -52,13 +51,23 @@ export class TagsComponent implements OnInit {
 
           this._adminService.postTag(this.tagModel).subscribe( data  => {
             this.getAllTags();
-            console.log(data);
           }),error => {
             console.log(error);
           }
 
           this.tagForm.reset();
       }
+  }
+
+  deleteTag(event:any)
+  {
+    this._adminService.deleteTag(event.target.value).subscribe( data => {
+        this.getAllTags();
+    }),error => {
+      console.log(error);
+    }
+    
+    this.tagForm.reset();
   }
 
 

@@ -50,4 +50,10 @@ export class AdminServiceService extends BaseService{
       );
   }
 
+  deleteTag(id:string)
+  {
+    return this.http.delete(`${environment.baseUrl}/api/tags/${id}`).pipe(
+      catchError(val => this.handleError(new HttpErrorResponse(val)))
+    );
+  }
 }
