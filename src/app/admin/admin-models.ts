@@ -9,7 +9,7 @@ export class Auth {
     expiration: string = '';
 }
 
-export interface Product
+export class Product
 {
     ProductCode: string;
     ProductName: string;

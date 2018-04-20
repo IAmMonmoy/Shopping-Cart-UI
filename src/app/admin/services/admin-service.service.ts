@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { Credential,Auth, Tag } from '../admin-models';
+import { Credential,Auth, Tag, Product } from '../admin-models';
 import { Observable } from 'rxjs/Observable';
 import { catchError } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
@@ -55,5 +55,11 @@ export class AdminServiceService extends BaseService{
     return this.http.delete(`${environment.baseUrl}/api/tags/${id}`).pipe(
       catchError(val => this.handleError(new HttpErrorResponse(val)))
     );
+  }
+
+  postProduct(formData: FormData)
+  {
+   
+    return this.http.post(`${environment.baseUrl}/api/products`,formData);
   }
 }
