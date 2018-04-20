@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { Credential,Auth, Tag, Product } from '../admin-models';
+import { Credential,Auth, Tag, Product } from '../../shared/AllModels';
 import { Observable } from 'rxjs/Observable';
 import { catchError } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';

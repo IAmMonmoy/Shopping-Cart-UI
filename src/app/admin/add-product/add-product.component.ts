@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Product,Tag } from '../admin-models';
+import { Product,Tag } from '../../shared/AllModels';
 import { FormBuilder, Validator, FormGroup, Validators, COMPOSITION_BUFFER_MODE } from '@angular/forms';
 import { AdminServiceService } from '../services/admin-service.service';
 import { error } from 'protractor';

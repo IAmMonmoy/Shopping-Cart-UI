@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminServiceService } from '../services/admin-service.service';
 import { FormBuilder,Validators, FormGroup } from '@angular/forms';
-import { Tag } from '../admin-models';
+import { Tag } from '../../shared/AllModels';
 import { error } from 'protractor';
 
 @Component({
