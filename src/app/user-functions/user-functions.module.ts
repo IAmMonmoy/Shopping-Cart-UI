@@ -4,12 +4,14 @@ import { AllProductsComponent } from './all-products/all-products.component';
 import { ProductComponent } from './product/product.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { UserRoutingModule } from './/user-routing.module';
+import { CommonService } from '../shared/services/common.service';
 
 @NgModule({
   imports: [
     CommonModule,
     UserRoutingModule
   ],
+  providers: [ CommonService ],
   declarations: [AllProductsComponent, ProductComponent, ShoppingCartComponent]
 })
 export class UserFunctionsModule { }

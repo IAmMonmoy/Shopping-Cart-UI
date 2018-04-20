@@ -1,3 +1,4 @@
+
 export class Credential
 {
     email: string = '';
@@ -16,8 +17,8 @@ export class Product
     Description: string;
     Price: number;
     Stock: number;
-    Image: File[];
-    Tags: string[];
+    Image: Image[];
+    Tags: ProductTag[];
 }
 
 export class Tag
@@ -25,4 +26,17 @@ export class Tag
     Id : string;
     TagName : string = '';
     TagDescription : string = '' ;
+}
+
+export class ProductTag
+{
+    productId: string;
+    tagId: string;
+}
+
+export class Image
+{
+    id: string;
+    productId: string;
+    path: string;
 }

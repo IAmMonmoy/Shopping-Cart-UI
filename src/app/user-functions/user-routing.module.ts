@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Routes } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 import { AllProductsComponent } from './all-products/all-products.component';
 import { Product } from '../shared/AllModels';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
@@ -13,8 +13,10 @@ const routes : Routes = [
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule.forRoot(routes)
   ],
+  exports: [RouterModule],
   declarations: []
 })
 
