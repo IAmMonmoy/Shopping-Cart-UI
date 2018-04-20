@@ -9,6 +9,7 @@ import { FormsModule , ReactiveFormsModule} from '@angular/forms';
 import { AdminServiceService } from './services/admin-service.service';
 import { AuthGuardService } from './services/auth-guard.service';
 import { RoleGuardService } from './services/role-guard.service';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { RoleGuardService } from './services/role-guard.service';
     CommonModule,
     AdminRoutingModule,
     FormsModule,
+    NgSelectModule,
     ReactiveFormsModule
   ],
   providers : [

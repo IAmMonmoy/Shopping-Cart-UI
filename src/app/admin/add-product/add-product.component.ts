@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from '../admin-models';
+import { Product,Tag } from '../admin-models';
 import { FormBuilder, Validator, FormGroup, Validators } from '@angular/forms';
 import { AdminServiceService } from '../services/admin-service.service';
 import { error } from 'protractor';
-import * as $ from 'jquery';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @Component({
   selector: 'app-add-product',
@@ -15,10 +15,12 @@ export class AddProductComponent implements OnInit {
   productForm : FormGroup;
   product : Product;
   isRequesting : boolean;
+  tags : Tag[];
 
   constructor(private fb: FormBuilder, private _adminservice: AdminServiceService) { }
 
   ngOnInit() {
+      this.getTags();
       this.createForm();
   }
   
@@ -30,9 +32,23 @@ export class AddProductComponent implements OnInit {
         Description : ['', [Validators.required]],
         Price : ['', [Validators.required, Validators.min(1), Validators.max(10000000)]],
         Stock : ['', [Validators.required, Validators.min(1), Validators.max(10000)]],
-        Image : ['', [Validators.required]],
+        Image : [''],
         Tags : ['', [Validators.required]]
     });
+  }
+
+  getTags()
+  {
+    this._adminservice.getAllTags().subscribe( data => {
+        this.tags = data;
+    }), error => {
+      console.log(error);
+    };
+  }
+
+  onSubmit()
+  {
+    console.log(this.productForm);
   }
 
 }
