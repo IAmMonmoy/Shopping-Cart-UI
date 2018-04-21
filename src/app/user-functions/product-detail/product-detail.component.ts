@@ -81,4 +81,10 @@ export class ProductDetailComponent implements OnInit {
     this._commonService.addCatProductToLocalStorage(event,this.purchaseAmount,this.product);
     this.purchaseAmount = 0;
   }
+
+  onImageClick(event)
+  {
+    console.log(event.target.id);
+    window.open("http://localhost:5000/"+event.target.id, "_blank");
+  }
 }
