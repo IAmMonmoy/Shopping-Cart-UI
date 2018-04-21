@@ -62,6 +62,7 @@ export class AllProductsComponent implements OnInit {
   cartButtonClick(event)
   {
     this._commonService.addCatProductToLocalStorage(event,this.purchaseAmount[event.target.id],this.products.find(pro=>pro.id == event.target.value));
+    this.purchaseAmount[event.target.id] = 0;
   }
 
 }
