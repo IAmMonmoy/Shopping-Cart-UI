@@ -80,6 +80,7 @@ export class CommonService extends BaseService{
   {
     var totalProduct = 0;
      this.allCartProduct = JSON.parse(localStorage.getItem('products'));
+     if(this.allCartProduct == null) this.allCartProduct = [];
      this.allCartProduct.forEach(element => {
        totalProduct += element.NumberOfProduct;
      });

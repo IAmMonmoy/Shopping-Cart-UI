@@ -75,8 +75,6 @@ export class AddProductComponent implements OnInit {
       }
 
       this.productForm.reset();
-
-      this.route.navigate(['/allProduct/']);
   }
 
   onFileSelected(event)
