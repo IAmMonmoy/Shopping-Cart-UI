@@ -51,3 +51,20 @@ export class cartProduct
     NumberOfProduct: number;
     TotalPrice: number;
 }
+
+export class Shipment
+{
+    UserName:string;
+    BuyerName:string;
+    BuyerAddress:string;
+    BuyerPhone:string;
+    TotalCost:number;
+    isDelivered:boolean;
+    productQuantity: ShipmentQuantity[];
+}
+
+export class ShipmentQuantity
+{
+    ProductName:string;
+    Quantity:number;
+}
