@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { cartProduct, Product } from '../../shared/AllModels';
+import { cartProduct, Product, Shipment,ShipmentQuantity } from '../../shared/AllModels';
 import { CommonService } from '../../shared/services/common.service';
 import { environment } from '../../../environments/environment';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -17,6 +17,8 @@ export class ShoppingCartComponent implements OnInit {
   checkOutForm : FormGroup;
   purchaseAmount : any[] = [];
   product : any;
+  shipment: Shipment;
+  shipmentQuantity: ShipmentQuantity;
 
   constructor(private _commonService: CommonService, private fb: FormBuilder, private route:Router) { }
 
@@ -45,19 +47,42 @@ export class ShoppingCartComponent implements OnInit {
   {
       if(this.allCartProduct.length > 0)
       {
+        //build shipment model to send to server
+        this.shipment = new Shipment();
+        this.shipment.UserName = this._commonService.getUserName();
+        this.shipment.BuyerAddress = this.checkOutForm.controls.Address.value;
+        this.shipment.BuyerName = this.checkOutForm.controls.Name.value;
+        this.shipment.BuyerPhone = this.checkOutForm.controls.Phone.value;
+        this.shipment.TotalCost = this.totalPrice;
+        this.shipment.productQuantity = [];
+        this.shipment.isDelivered = false;
+
+        //decrease the stock from database
           this.allCartProduct.forEach(element => {
             this._commonService.updateProductStock(element.Id,element.NumberOfProduct).subscribe(
               val => {
                 console.log(val);
               }
             );
+            
+            //build shipment model to send to server
+            this.shipmentQuantity = new ShipmentQuantity();
+            this.shipmentQuantity.ProductName = element.ProductName;
+            this.shipmentQuantity.Quantity = element.NumberOfProduct;
+            this.shipment.productQuantity.push(this.shipmentQuantity);
           });
+          
+          //add shipment
+          this._commonService.postShipment(this.shipment).subscribe(val => {
+              console.log(val);
+          });
+
+          console.log(this.shipment);
       }
 
         this.clearCart();
         this.checkOutForm.reset();
         this.route.navigate(['/allProduct']);
-        
   }
   
   createForm()

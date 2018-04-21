@@ -4,11 +4,12 @@ import { Observable } from 'rxjs/Observable';
 import { catchError } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import { BaseService } from '../../shared/services/base.service';
-import { Product,Tag, cartProduct } from '../AllModels';
+import { Product,Tag, cartProduct,Shipment } from '../AllModels';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable()
 export class CommonService extends BaseService{
-
+  jwtHelper = new JwtHelperService();
   allCartProduct : cartProduct[];
   addToCart: cartProduct;
 
@@ -105,6 +106,29 @@ export class CommonService extends BaseService{
   clearCart()
   {
     localStorage.removeItem('products');
+  }
+
+  postShipment(shipment)
+  {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      })
+    }
+
+    return this._http.post(`${environment.baseUrl}/api/shipment`,shipment,httpOptions).pipe(
+      catchError(val => this.handleError(new HttpErrorResponse(val)))
+    )
+
+  }
+
+  getUserName() : string
+  {
+    const token = localStorage.getItem('token');
+
+      const tokenPayload = this.jwtHelper.decodeToken(token);
+      
+      return tokenPayload.sub;
   }
 
 }
