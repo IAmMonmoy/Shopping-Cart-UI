@@ -9,7 +9,7 @@ import { AuthGuardService as AuthGuard } from '../admin/services/auth-guard.serv
 const routes : Routes = [
   { path: 'allProduct', component: AllProductsComponent},
   { path: 'product/:id', component: ProductDetailComponent },
-  { path: 'cart', component: ShoppingCartComponent }
+  { path: 'cart', component: ShoppingCartComponent, canActivate:[AuthGuard] }
 ]
 
 @NgModule({

@@ -17,7 +17,17 @@
                       <th scope="row">{{i+1}}</th>
                       <td>{{product.ProductName}}</td>
                       <td>{{product.Price}}</td>
-                      <td>{{product.NumberOfProduct}}</td>
+                      <td>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <button class="btn btn btn-secondary" type="button" (click)="subtractAmount($event)" id="{{i}}" value="{{product.Id}}">-</button>
+                            </div>
+                            <input style="text-align: center" type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1" value="{{purchaseAmount[i]}}" readonly>
+                                <div class="input-group-prepend">
+                                <button class="btn btn btn-secondary" type="button" (click)="addAmount($event)" id="{{i}}" value="{{product.Id}}">+</button>
+                                </div>
+                        </div>
+                      </td>
                       <td>{{product.TotalPrice}}</td>
                     </tr>
             
