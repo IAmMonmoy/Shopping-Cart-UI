@@ -49,4 +49,9 @@ export class AllProductsComponent implements OnInit {
         this.purchaseAmount[event.target.id]--;
   }
 
+  onCardClick()
+  {
+    console.log("yes");
+  }
+
 }
