@@ -9,14 +9,11 @@
       <li class="nav-item active">
         <a class="nav-link" routerLinkActive="active" routerLink="/allProduct">Home <span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="_adminService.isAdmin()">
         <a class="nav-link" routerLinkActive="active" routerLink="/addProduct">Add Product</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="_adminService.isAdmin()">
         <a class="nav-link" routerLinkActive="active" routerLink="/tags">Add Tag</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">About</a>
       </li>
     </ul>
 
@@ -26,7 +23,11 @@
           </button>
 
           <li class="nav-item">
-              <a class="nav-link" routerLinkActive="active" routerLink="/login">login</a>
+              <a class="nav-link" *ngIf="!_adminService.isAuthenticated()" routerLinkActive="active" routerLink="/login">login</a>
+            </li>
+
+          <li class="nav-item">
+              <a class="nav-link" *ngIf="_adminService.isAuthenticated()" routerLinkActive="active" routerLink="/allProduct" (click)="logOut()">logout</a>
             </li>
       </ul>
   </div>

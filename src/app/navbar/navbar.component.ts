@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonService } from '../shared/services/common.service';
 import { AuthGuardService } from '../admin/services/auth-guard.service';
 import { RoleGuardService } from '../admin/services/role-guard.service';
+import { AdminServiceService } from '../admin/services/admin-service.service';
 
 
 @Component({
@@ -11,10 +12,14 @@ import { RoleGuardService } from '../admin/services/role-guard.service';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private _commonService: CommonService, private _authGuard: AuthGuardService,
-              private _roleGuard: RoleGuardService) { }
+  constructor(private _commonService: CommonService, private _adminService: AdminServiceService) { }
 
   ngOnInit() {
+  }
+
+  logOut()
+  {
+    localStorage.removeItem('token');
   }
 
 }

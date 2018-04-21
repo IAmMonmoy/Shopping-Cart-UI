@@ -5,11 +5,13 @@ import { Observable } from 'rxjs/Observable';
 import { catchError } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import { BaseService } from '../../shared/services/base.service';
+import { AuthService } from './auth.service';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable()
 export class AdminServiceService extends BaseService{
-
-  constructor(private http: HttpClient) {  super() }
+  jwtHelper = new JwtHelperService();
+  constructor(private http: HttpClient, public auth: AuthService) {  super() }
 
   login(_credential:Credential): Observable<Auth>
   {
@@ -61,5 +63,24 @@ export class AdminServiceService extends BaseService{
   {
    
     return this.http.post(`${environment.baseUrl}/api/products`,formData);
+  }
+
+  isAuthenticated()
+  {
+    if(!this.auth.isAuthenticated())
+      return false;
+    return true;
+  }
+
+  isAdmin()
+  {
+    const token = localStorage.getItem('token');
+
+      const tokenPayload = this.jwtHelper.decodeToken(token);
+
+      if(!this.auth.isAuthenticated() || tokenPayload.nonce != "Administrator")
+          return false;
+
+      return true;
   }
 }
