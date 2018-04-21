@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { cartProduct } from '../../shared/AllModels';
 import { CommonService } from '../../shared/services/common.service';
 import { environment } from '../../../environments/environment';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -10,9 +11,34 @@ import { environment } from '../../../environments/environment';
 })
 export class ShoppingCartComponent implements OnInit {
 
-  constructor() { }
+  allCartProduct : cartProduct[];
+  totalPrice : number;
+  checkOutForm : FormGroup;
+
+  constructor(private _commonService: CommonService, private fb: FormBuilder) { }
 
   ngOnInit() {
+    this.allCartProduct = this._commonService.getCartProductFromLocalStorage();
+    this.totalPrice=0;
+    this.allCartProduct.forEach(element => {
+      this.totalPrice += element.TotalPrice;
+    });
+    this.createForm();
+    
+    //console.log(this.allCartProduct);
   }
 
+  onSubmit()
+  {
+    console.log("yes");
+  }
+  
+  createForm()
+  {
+    this.checkOutForm = this.fb.group({
+        Name : ['', [Validators.required]],
+        Address : ['', [Validators.required]],
+        Phone : ['', [Validators.required]]
+    });
+  }
 }

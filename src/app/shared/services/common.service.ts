@@ -71,5 +71,10 @@ export class CommonService extends BaseService{
     }
   }
 
+  getCartProductFromLocalStorage() : cartProduct[]
+  {
+      return JSON.parse(localStorage.getItem('products'));
+  }
+
 
 }

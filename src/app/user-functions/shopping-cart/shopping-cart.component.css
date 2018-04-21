@@ -1,0 +1,18 @@
+.table{
+    margin-top: 20px;
+    font-weight: bold;
+}
+#total{
+    color: red;
+    font-size: 20px;
+}
+.alert{
+    font-size: 15px;
+    margin: 0;
+    padding: 0;
+    height: 25px;
+}
+.card{
+    margin-top: 20px;
+    background-color: #B8DAFF;
+}
