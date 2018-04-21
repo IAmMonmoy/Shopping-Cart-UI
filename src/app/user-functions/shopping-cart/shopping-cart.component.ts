@@ -29,6 +29,7 @@ export class ShoppingCartComponent implements OnInit {
   {
     this.allCartProduct = this._commonService.getCartProductFromLocalStorage();
     this.totalPrice=0;
+    if(this.allCartProduct == null) this.allCartProduct = [];
     this.allCartProduct.forEach(element => {
       this.totalPrice += element.TotalPrice;
     });
@@ -37,16 +38,20 @@ export class ShoppingCartComponent implements OnInit {
   onSubmit()
   {
       if(this.allCartProduct.length > 0)
-        this.allCartProduct.forEach(element => {
+      {
+          this.allCartProduct.forEach(element => {
             this._commonService.updateProductStock(element.Id,element.NumberOfProduct).subscribe(
               val => {
                 console.log(val);
               }
             );
-        });
+          });
+      }
 
         this.clearCart();
+        this.checkOutForm.reset();
         this.route.navigate(['/allProduct']);
+        
   }
   
   createForm()
