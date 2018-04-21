@@ -1,3 +1,35 @@
-<p>
-  shipment works!
-</p>
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <div class="table-responsive">
+                <table class="table table-striped table-primary">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">User Name</th>
+                        <th scope="col">Buyer Address</th>
+                        <th scope="col">Buyer Phone</th>
+                        <th scope="col">Products and Quantity</th>
+                        <th scope="col">Total Cost</th>
+                        <th scope="col">Is Delivered</th>
+                      </tr>
+                    </thead>
+                    <tbody *ngIf="shipment">
+                        <tr *ngFor="let shipments of shipment; let i=index">
+                          <th scope="row">{{i+1}}</th>
+                          <td>{{shipments.userName}}</td>
+                          <td>{{shipments.buyerAddress}}</td>
+                          <td>{{shipments.buyerPhone}}</td>
+                          <td>
+                              {{products}}
+                          </td>
+                          <td >{{shipments.totalCost}}</td>
+                          <td *ngIf="shipment.isDelivered">Yes</td>
+                          <td *ngIf="!shipment.isDelivered">No</td>
+                        </tr>
+                    </tbody>
+                  </table>
+            </div>
+           
+        </div>
+    </div>

@@ -10,7 +10,7 @@ import { Shipment,ShipmentQuantity } from '../../shared/AllModels';
 export class ShipmentComponent implements OnInit {
 
   shipment: any[];
-
+  products:string;
   constructor(private _commonService: CommonService) { }
 
   ngOnInit() {
@@ -21,8 +21,15 @@ export class ShipmentComponent implements OnInit {
           this.shipment.forEach(element => {
             this._commonService.getShipmentProductById(element.id).subscribe( val=> {
                 element.shipmenQuantiy = val;
+
+                //make string of all the products and quantity
+                this.products = "";
+                element.shipmenQuantiy.forEach(val => {
+                  this.products+="Name: "+val.productName+" "+"Quantity: "+val.quantity+" , ";
+                });
             })
           });
+          //console.log(this.shipment);
       });
   }
 
