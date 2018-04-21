@@ -35,6 +35,20 @@ export class CommonService extends BaseService{
     );
   }
 
+  updateProductStock(id,stock)
+  {
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      })
+    }
+
+    return this._http.put(`${environment.baseUrl}/api/products/${id}/${stock}`,httpOptions).pipe(
+      catchError(val=>this.handleError(new HttpErrorResponse(val)))
+    );
+  }
+
   addCatProductToLocalStorage(event, quantity, product)
   {
     if(quantity>0)
