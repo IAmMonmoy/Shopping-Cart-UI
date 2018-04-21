@@ -40,3 +40,13 @@ export class Image
     productId: string;
     path: string;
 }
+
+export class cartProduct
+{
+    ProductCode: string;
+    ProductName: string;
+    Description: string;
+    Price: number;
+    NumberOfProduct: number;
+    TotalPrice: number;
+}

@@ -31,4 +31,6 @@ export class CommonService extends BaseService{
       catchError(val=>this.handleError(new HttpErrorResponse(val)))
     );
   }
+
+  
 }
