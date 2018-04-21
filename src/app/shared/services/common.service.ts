@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { catchError } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import { BaseService } from '../../shared/services/base.service';
-import { Product,Tag, cartProduct,Shipment } from '../AllModels';
+import { Product,Tag, cartProduct,Shipment, ShipmentQuantity } from '../AllModels';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable()
@@ -121,6 +121,35 @@ export class CommonService extends BaseService{
     )
 
   }
+
+  getShipment():Observable<Shipment[]>
+  {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      })
+    }
+
+    return this._http.get(`${environment.baseUrl}/api/shipment`,httpOptions).pipe(
+      catchError(val => this.handleError(new HttpErrorResponse(val)))
+    )
+
+  }
+
+  getShipmentProductById(id):Observable<ShipmentQuantity[]>
+  {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      })
+    }
+
+    return this._http.get(`${environment.baseUrl}/api/shipment/${id}`,httpOptions).pipe(
+      catchError(val => this.handleError(new HttpErrorResponse(val)))
+    )
+
+  }
+
 
   getUserName() : string
   {
