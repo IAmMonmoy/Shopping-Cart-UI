@@ -8,6 +8,7 @@
               <div class="row">
                 <div class="col-md-6" *ngFor="let img of product?.image">
                     <img (click)="onImageClick($event)" src="{{baseUrl+'/'+img.path}}" alt="product.productName" class="img-thumbnail" id = "{{img.path}}">
+                    <label for="">Click on the image to see full size</label>
                 </div>
               </div>
           </div>
