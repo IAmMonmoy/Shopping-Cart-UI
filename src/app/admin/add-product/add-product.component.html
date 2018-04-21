@@ -44,7 +44,7 @@
                         <div class="form-group row">
                             <div class="col-md-6">
                                 <label for="Price">Price</label>
-                                <input type="text" id="Price" class="form-control" formControlName="Price">
+                                <input type="number" id="Price" class="form-control" formControlName="Price">
                                 <div class="alert alert-danger" role="alert" *ngIf="productForm.controls.Price.errors && (productForm.controls.Price.dirty || productForm.controls.Price.touched)">
                                     <div *ngIf = "productForm.controls.Price.errors.required">
                                         <p>Price field is required</p>
@@ -60,7 +60,7 @@
 
                             <div class="col-md-6">
                                 <label for="Stock">Stock</label>
-                                <input type="text" id="Stock" class="form-control" formControlName="Stock">
+                                <input type="number" id="Stock" class="form-control" formControlName="Stock">
                                 <div class="alert alert-danger" role="alert" *ngIf="productForm.controls.Stock.errors && (productForm.controls.Stock.dirty || productForm.controls.Stock.touched)">
                                     <div *ngIf = "productForm.controls.Stock.errors.required">
                                         <p>Stock field is required</p>

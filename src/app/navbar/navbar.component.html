@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <a class="navbar-brand" href="#">Monmoy Shopping Cart</a>
+  <a class="navbar-brand" href="#">Shopping Cart</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -15,6 +15,9 @@
       <li class="nav-item" *ngIf="_adminService.isAdmin()">
         <a class="nav-link" routerLinkActive="active" routerLink="/tags">Add Tag</a>
       </li>
+      <li class="nav-item" *ngIf="_adminService.isAdmin()">
+          <a class="nav-link" routerLinkActive="active" routerLink="/shipment">Shipment</a>
+        </li>
     </ul>
 
     <ul class="navbar-nav navbar-right">
