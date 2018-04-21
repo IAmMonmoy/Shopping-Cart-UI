@@ -8,6 +8,7 @@ import { ShipmentComponent } from './shipment/shipment.component';
 import { FormsModule , ReactiveFormsModule} from '@angular/forms';
 import { AdminServiceService } from './services/admin-service.service';
 import { AuthGuardService } from './services/auth-guard.service';
+import { AuthService } from './services/auth.service';
 import { RoleGuardService } from './services/role-guard.service';
 import { NgSelectModule } from '@ng-select/ng-select';
 
@@ -22,6 +23,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
   ],
   providers : [
     AdminServiceService,
+    AuthService,
     AuthGuardService,
     RoleGuardService
   ]

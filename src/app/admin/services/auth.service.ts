@@ -4,7 +4,9 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 @Injectable()
 export class AuthService {
 
-  constructor(public jwtHelper: JwtHelperService) { }
+  constructor() { }
+
+  jwtHelper = new JwtHelperService();
 
   public isAuthenticated(): boolean 
   {
