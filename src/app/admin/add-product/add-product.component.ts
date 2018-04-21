@@ -4,6 +4,7 @@ import { FormBuilder, Validator, FormGroup, Validators, COMPOSITION_BUFFER_MODE 
 import { AdminServiceService } from '../services/admin-service.service';
 import { error } from 'protractor';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-product',
@@ -18,7 +19,7 @@ export class AddProductComponent implements OnInit {
   tags : Tag[];
   selectedFile : File[];
 
-  constructor(private fb: FormBuilder, private _adminservice: AdminServiceService) { }
+  constructor(private fb: FormBuilder, private _adminservice: AdminServiceService, private route: Router) { }
 
   ngOnInit() {
       this.getTags();
@@ -74,6 +75,8 @@ export class AddProductComponent implements OnInit {
       }
 
       this.productForm.reset();
+
+      this.route.navigate(['/allProduct/']);
   }
 
   onFileSelected(event)
