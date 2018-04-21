@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from '../../shared/AllModels';
+import { Product,cartProduct } from '../../shared/AllModels';
 import { CommonService } from '../../shared/services/common.service';
 import { environment } from '../../../environments/environment';
 import { Router } from '@angular/router';
@@ -13,8 +13,11 @@ export class AllProductsComponent implements OnInit {
 
   products : any[];
   baseUrl : any;
+  product : any;
   purchaseAmount : any[] = [];
   selectedButton : Number;
+  addToCart : cartProduct;
+  allCartProduct: cartProduct[];
 
   constructor(private _commonService: CommonService, private route: Router) { }
 
@@ -41,6 +44,7 @@ export class AllProductsComponent implements OnInit {
     //save the id in the value of button to identify which product
     if(this.purchaseAmount[event.target.id]+1 <= this.products.find(pro => pro.id == event.target.value).stock)
         this.purchaseAmount[event.target.id]++;
+    console.log(event.target.value);
   }
 
   subtractAmount(event)
@@ -55,9 +59,9 @@ export class AllProductsComponent implements OnInit {
     this.route.navigate(['/product/'+id]);
   }
 
-  cartButtonClick()
+  cartButtonClick(event)
   {
-    console.log("cart");
+    this._commonService.addCatProductToLocalStorage(event,this.purchaseAmount[event.target.id],this.products.find(pro=>pro.id == event.target.value));
   }
 
 }

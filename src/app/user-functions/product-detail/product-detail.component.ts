@@ -75,4 +75,9 @@ export class ProductDetailComponent implements OnInit {
       this.totalPrice = this.purchaseAmount*this.product.price;
     }
   }
+
+  cartButtonClick(event)
+  {
+    this._commonService.addCatProductToLocalStorage(event,this.purchaseAmount,this.product);
+  }
 }

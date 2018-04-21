@@ -3,7 +3,7 @@
       <h5 class="card-header">
           Product Details
       </h5>
-      <div class="row">
+      <div class="row" *ngIf="product">
           <div class="col-md-6">
               <div class="row">
                 <div class="col-md-6" *ngFor="let img of product?.image">
@@ -14,7 +14,7 @@
 
           <div class="col-md-6">
               <div class="card text-center border-primary">
-                  <div class="wrapper">
+                  <div class="wrapper" *ngIf="product">
                       <div class="card-header">{{product.productName}}</div>
                       <div class="card-body text-primary">
                         <p class="card-text">Product Code : {{product.productCode}}</p>
@@ -36,7 +36,7 @@
                           Tags : <span *ngFor="let tag of tags">{{tag.tagName}}, </span>
                       </div>
                   </div>
-                  <button class="btn btn btn-primary" type="button" (click)="cartButtonClick()" value="{{product.id}}">Add To Cart</button>
+                  <button class="btn btn btn-primary" type="button" (click)="cartButtonClick($event)" value="{{product.id}}">Add To Cart</button>
                 </div>
           </div>
       </div>

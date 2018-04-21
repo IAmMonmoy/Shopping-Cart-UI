@@ -43,6 +43,7 @@ export class Image
 
 export class cartProduct
 {
+    Id: string;
     ProductCode: string;
     ProductName: string;
     Description: string;
