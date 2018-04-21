@@ -87,5 +87,9 @@ export class CommonService extends BaseService{
      return totalProduct;
   }
 
+  clearCart()
+  {
+    localStorage.removeItem('products');
+  }
 
 }

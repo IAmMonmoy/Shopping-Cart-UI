@@ -18,14 +18,19 @@ export class ShoppingCartComponent implements OnInit {
   constructor(private _commonService: CommonService, private fb: FormBuilder) { }
 
   ngOnInit() {
+    this.getCartProducts();
+    this.createForm();
+    
+    //console.log(this.allCartProduct);
+  }
+
+  getCartProducts()
+  {
     this.allCartProduct = this._commonService.getCartProductFromLocalStorage();
     this.totalPrice=0;
     this.allCartProduct.forEach(element => {
       this.totalPrice += element.TotalPrice;
     });
-    this.createForm();
-    
-    //console.log(this.allCartProduct);
   }
 
   onSubmit()
@@ -40,5 +45,12 @@ export class ShoppingCartComponent implements OnInit {
         Address : ['', [Validators.required]],
         Phone : ['', [Validators.required]]
     });
+  }
+  
+  clearCart()
+  {
+    this._commonService.clearCart();
+    this.getCartProducts();
+    this._commonService.getLocalProductsNumber();
   }
 }
