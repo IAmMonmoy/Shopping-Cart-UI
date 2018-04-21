@@ -3,7 +3,6 @@ import { Product, Tag } from '../../shared/AllModels';
 import { CommonService } from '../../shared/services/common.service';
 import { environment } from '../../../environments/environment';
 import { ActivatedRoute } from '@angular/router';
-import { COMPOSITION_BUFFER_MODE } from '@angular/forms';
 
 @Component({
   selector: 'app-product-detail',
@@ -15,6 +14,9 @@ export class ProductDetailComponent implements OnInit {
   productId: string;
   product: any;
   tags: Tag[] = [];
+  baseUrl: string;
+  purchaseAmount: number;
+  totalPrice: number;
 
   constructor(private _commonService: CommonService, private route: ActivatedRoute) { }
 
@@ -23,6 +25,11 @@ export class ProductDetailComponent implements OnInit {
     this.route.params.subscribe(param=>{
         this.productId = param['id'];
     })
+
+    this.purchaseAmount = 0;
+    this.totalPrice = 0;
+
+    this.baseUrl = environment.baseUrl;
 
     this.getProductById();
   }
@@ -45,5 +52,27 @@ export class ProductDetailComponent implements OnInit {
               this.tags.push(val);
           });
       });
+  }
+
+  addAmount()
+  {
+    //can not take more than stock
+    //save the id in the value of button to identify which product
+    if(this.purchaseAmount+1 <= this.product.stock)
+    {
+      this.purchaseAmount++;
+      this.totalPrice = this.purchaseAmount*this.product.price;
+    }
+        
+  }
+
+  subtractAmount(event)
+  {
+    //saved the index in the id of button to identify which button clicked
+    if(this.purchaseAmount-1 >= 0)
+    {
+      this.purchaseAmount--;
+      this.totalPrice = this.purchaseAmount*this.product.price;
+    }
   }
 }
