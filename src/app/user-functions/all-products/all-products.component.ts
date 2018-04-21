@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from '../../shared/AllModels';
 import { CommonService } from '../../shared/services/common.service';
 import { environment } from '../../../environments/environment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-all-products',
@@ -15,7 +16,7 @@ export class AllProductsComponent implements OnInit {
   purchaseAmount : any[] = [];
   selectedButton : Number;
 
-  constructor(private _commonService: CommonService) { }
+  constructor(private _commonService: CommonService, private route: Router) { }
 
   ngOnInit() {
     this.baseUrl = environment.baseUrl;
@@ -49,9 +50,14 @@ export class AllProductsComponent implements OnInit {
         this.purchaseAmount[event.target.id]--;
   }
 
-  onCardClick()
+  onCardClick(id)
   {
-    console.log("yes");
+    this.route.navigate(['/product/'+id]);
+  }
+
+  cartButtonClick()
+  {
+    console.log("cart");
   }
 
 }
