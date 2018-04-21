@@ -76,5 +76,16 @@ export class CommonService extends BaseService{
       return JSON.parse(localStorage.getItem('products'));
   }
 
+  getLocalProductsNumber() : number
+  {
+    var totalProduct = 0;
+     this.allCartProduct = JSON.parse(localStorage.getItem('products'));
+     this.allCartProduct.forEach(element => {
+       totalProduct += element.NumberOfProduct;
+     });
+
+     return totalProduct;
+  }
+
 
 }
