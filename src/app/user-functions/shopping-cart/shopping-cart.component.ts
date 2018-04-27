@@ -82,7 +82,7 @@ export class ShoppingCartComponent implements OnInit {
 
         this.clearCart();
         this.checkOutForm.reset();
-        this.route.navigate(['/allProduct']);
+        //this.route.navigate(['/allProduct']);
   }
   
   createForm()
