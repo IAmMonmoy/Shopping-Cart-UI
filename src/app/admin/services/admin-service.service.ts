@@ -32,9 +32,21 @@ export class AdminServiceService extends BaseService{
     localStorage.setItem('token', auth.token);
   }
 
+  getAuthorizationToken() : string
+  {
+    return localStorage.getItem('token');
+  }
+
   getAllTags() : Observable<Tag[]>
   {
-    return this.http.get(`${environment.baseUrl}/api/tags`).pipe(
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization : 'Bearer '+ this.getAuthorizationToken()
+      })
+    }
+
+    return this.http.get(`${environment.baseUrl}/api/tags`,httpOptions).pipe(
       catchError(val => this.handleError(new HttpErrorResponse(val)))
     );
   }
@@ -44,6 +56,7 @@ export class AdminServiceService extends BaseService{
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
+        Authorization : 'Bearer '+ this.getAuthorizationToken()
       })
     }
 
@@ -54,15 +67,26 @@ export class AdminServiceService extends BaseService{
 
   deleteTag(id:string)
   {
-    return this.http.delete(`${environment.baseUrl}/api/tags/${id}`).pipe(
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization : 'Bearer '+ this.getAuthorizationToken()
+      })
+    }
+
+    return this.http.delete(`${environment.baseUrl}/api/tags/${id}`,httpOptions).pipe(
       catchError(val => this.handleError(new HttpErrorResponse(val)))
     );
   }
 
   postProduct(formData: FormData)
   {
-   
-    return this.http.post(`${environment.baseUrl}/api/products`,formData);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization : 'Bearer '+ this.getAuthorizationToken()
+      })
+    }
+    return this.http.post(`${environment.baseUrl}/api/products`,formData, httpOptions);
   }
 
   isAuthenticated()

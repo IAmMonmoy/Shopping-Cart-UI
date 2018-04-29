@@ -72,12 +72,9 @@ export class ShoppingCartComponent implements OnInit {
             this.shipment.productQuantity.push(this.shipmentQuantity);
           });
           
-          //add shipment
-          this._commonService.postShipment(this.shipment).subscribe(val => {
-              console.log(val);
-          });
+         
 
-          console.log(this.shipment);
+          //console.log(this.shipment);
       }
 
         this.clearCart();

@@ -31,7 +31,14 @@ export class CommonService extends BaseService{
 
   getTagById(id) : Observable<Tag>
   {
-    return this._http.get(`${environment.baseUrl}/api/tags/`+id).pipe(
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization : 'Bearer '+ this.getAuthorizationToken()
+      })
+    }
+
+    return this._http.get(`${environment.baseUrl}/api/tags/`+id,httpOptions).pipe(
       catchError(val=>this.handleError(new HttpErrorResponse(val)))
     );
   }
@@ -42,6 +49,7 @@ export class CommonService extends BaseService{
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
+        Authorization : 'Bearer '+ this.getAuthorizationToken()
       })
     }
 
@@ -113,6 +121,7 @@ export class CommonService extends BaseService{
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
+        Authorization : 'Bearer '+ this.getAuthorizationToken()
       })
     }
 
@@ -127,6 +136,7 @@ export class CommonService extends BaseService{
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
+        Authorization : 'Bearer '+ this.getAuthorizationToken()
       })
     }
 
@@ -141,6 +151,7 @@ export class CommonService extends BaseService{
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
+          Authorization : 'Bearer '+ this.getAuthorizationToken()
       })
     }
 
@@ -153,11 +164,16 @@ export class CommonService extends BaseService{
 
   getUserName() : string
   {
-    const token = localStorage.getItem('token');
+    const token = this.getAuthorizationToken();
 
       const tokenPayload = this.jwtHelper.decodeToken(token);
       
       return tokenPayload.sub;
+  }
+
+  getAuthorizationToken() : string
+  {
+    return localStorage.getItem('token');
   }
 
 }
